@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: patient-module
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/medical-manager
+    username: spostgres
+    password: abacaxi98
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+server:
+  port: 0
