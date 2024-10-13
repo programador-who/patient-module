@@ -2,6 +2,7 @@ package who.programador.mm.patientmodule.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import who.programador.mm.patientmodule.mappers.PatientMapper;
 import who.programador.mm.patientmodule.model.dtos.PatientRequestDTO;
 import who.programador.mm.patientmodule.model.entities.Patient;
 import who.programador.mm.patientmodule.repositories.PatientRepository;
@@ -10,16 +11,11 @@ import who.programador.mm.patientmodule.repositories.PatientRepository;
 @RequiredArgsConstructor
 public class PatientService {
     private final PatientRepository patientRepository;
+    private final PatientMapper patientMapper;
 
     public Long post(PatientRequestDTO patientRequestDTO) {
-        Patient entity = new Patient();
-
-        // TODO - Implemented mapping struct
-        entity.setName(patientRequestDTO.getName());
-        entity.setCpf(patientRequestDTO.getCpf());
-        entity.setAddress(patientRequestDTO.getAddress());
-        entity.setPhone(patientRequestDTO.getPhone());
-        patientRepository.save(entity);
-        return entity.getId();
+        Patient patientEntity = patientMapper.convert(patientRequestDTO);
+        patientRepository.save(patientEntity);
+        return patientEntity.getId();
     }
 }

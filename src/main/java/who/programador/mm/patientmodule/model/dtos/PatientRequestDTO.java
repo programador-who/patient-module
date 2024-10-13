@@ -8,7 +8,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class PatientRequestDTO {
-    private Long id;
     private String name;
     private String cpf;
     private String address;
