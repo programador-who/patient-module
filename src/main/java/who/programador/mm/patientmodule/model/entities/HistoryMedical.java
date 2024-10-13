@@ -8,6 +8,8 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Date;
+
 @Entity
 @Getter
 @Setter
@@ -16,7 +18,7 @@ public class HistoryMedical {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
-    private String date;
+    private Date date;
 
     @ManyToOne
     private Patient patient;
