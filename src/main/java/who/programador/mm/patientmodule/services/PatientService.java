@@ -9,7 +9,7 @@ import who.programador.mm.patientmodule.repositories.PatientRepository;
 
 @Service
 @RequiredArgsConstructor
-public class PatientService {
+public class PatientService implements IPatientService {
     private final PatientRepository patientRepository;
     private final PatientMapper patientMapper;
 
