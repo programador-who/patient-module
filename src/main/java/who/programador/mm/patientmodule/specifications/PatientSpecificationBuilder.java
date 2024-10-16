@@ -20,7 +20,7 @@ public class PatientSpecificationBuilder {
         specification = specification.or(PatientSpecification.withPhone(patientFilterDTO.getPhone()));
         return specification;
     }
- 
+
     public Specification<Patient> buildAndSpecification(PatientFilterDTO patientFilterDTO) {
         Specification<Patient> specification = Specification.where(PatientSpecification.withName(patientFilterDTO.getName()));
         specification = specification.and(PatientSpecification.withCpf(patientFilterDTO.getCpf()));
