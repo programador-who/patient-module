@@ -1,7 +1,7 @@
 package who.programador.mm.patientmodule.services;
 
-import who.programador.mm.patientmodule.model.dtos.PatientRequestDTO;
+import who.programador.mm.patientmodule.model.dtos.PatientFilterDTO;
 
 public interface IPatientService {
-    Long post(PatientRequestDTO patientRequestDTO);
+    Long post(PatientFilterDTO patientFilterDTO);
 }
