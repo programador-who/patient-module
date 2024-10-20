@@ -23,7 +23,7 @@ public class PatientController {
     @PostMapping
     public ResponseEntity<Void> post(@RequestBody PatientRequestDTO patientRequestDTO) {
         log.info("POST /patient {}", patientRequestDTO);
-        Long id = patientService.post(patientRequestDTO);
+        Long id = patientService.create(patientRequestDTO);
         URI location = URI.create(String.format("/patient/%d", id));
         return ResponseEntity.created(location).build();
     }

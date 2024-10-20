@@ -13,9 +13,13 @@ public class PatientService implements IPatientService {
     private final PatientRepository patientRepository;
     private final PatientMapper patientMapper;
 
-    public Long post(PatientRequestDTO patientRequestDTO) {
+    public Long create(PatientRequestDTO patientRequestDTO) {
         Patient patientEntity = patientMapper.convert(patientRequestDTO);
         patientRepository.save(patientEntity);
         return patientEntity.getId();
+    }
+
+    public Patient findByCpf(String cpf) {
+        return patientRepository.findByCpf(cpf);
     }
 }
