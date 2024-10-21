@@ -1,11 +1,14 @@
 package who.programador.mm.patientmodule.specifications;
 
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 import who.programador.mm.patientmodule.model.dtos.PatientFilterDTO;
 import who.programador.mm.patientmodule.model.entities.Patient;
 import who.programador.mm.patientmodule.model.enums.LogicOperatorType;
 
-public class PatientSpecificationBuilder {
+@Component
+public class PatientSpecificationBuilder implements IPatientSpecificationBuilder{
+
     public Specification<Patient> buildSpecification(PatientFilterDTO patientFilterDTO) {
         if (patientFilterDTO.getLogicOperator().equals(LogicOperatorType.OR)) {
             return buildOrSpecification(patientFilterDTO);
@@ -13,7 +16,7 @@ public class PatientSpecificationBuilder {
         return buildAndSpecification(patientFilterDTO);
     }
 
-    public Specification<Patient> buildOrSpecification(PatientFilterDTO patientFilterDTO) {
+    private Specification<Patient> buildOrSpecification(PatientFilterDTO patientFilterDTO) {
         Specification<Patient> specification = Specification.where(PatientSpecification.withName(patientFilterDTO.getName()));
         specification = specification.or(PatientSpecification.withCpf(patientFilterDTO.getCpf()));
         specification = specification.or(PatientSpecification.withAddress(patientFilterDTO.getAddress()));
@@ -21,7 +24,7 @@ public class PatientSpecificationBuilder {
         return specification;
     }
 
-    public Specification<Patient> buildAndSpecification(PatientFilterDTO patientFilterDTO) {
+    private Specification<Patient> buildAndSpecification(PatientFilterDTO patientFilterDTO) {
         Specification<Patient> specification = Specification.where(PatientSpecification.withName(patientFilterDTO.getName()));
         specification = specification.and(PatientSpecification.withCpf(patientFilterDTO.getCpf()));
         specification = specification.and(PatientSpecification.withAddress(patientFilterDTO.getAddress()));
