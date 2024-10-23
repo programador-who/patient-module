@@ -10,4 +10,5 @@ public interface IPatientService {
     Long create(PatientRequestDTO patientRequestDTO);
     Patient findByCpf(String cpf);
     Page<PatientResponseDTO> getByFilter(PatientFilterDTO patientFilterDTO);
+    PatientResponseDTO update(Long id, PatientRequestDTO patientRequestDTO);
 }

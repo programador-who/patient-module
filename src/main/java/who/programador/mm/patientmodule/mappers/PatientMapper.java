@@ -21,4 +21,6 @@ public interface PatientMapper {
     }
 
     List<PatientResponseDTO> convert(List<Patient> content);
+
+    PatientResponseDTO convert(Patient patient);
 }

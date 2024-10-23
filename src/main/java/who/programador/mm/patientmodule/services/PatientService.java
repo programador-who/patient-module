@@ -35,4 +35,14 @@ public class PatientService implements IPatientService {
         Page<Patient> patientRepositoryAll = patientRepository.findAll(patientSpecification, patientFilterDTO.pageable());
         return patientMapper.convert(patientRepositoryAll);
     }
+
+    public PatientResponseDTO update(Long id, PatientRequestDTO patientRequestDTO) {
+        Patient patientEntity = patientRepository.findById(id).orElseThrow();
+        patientEntity.setName(patientRequestDTO.getName());
+        patientEntity.setCpf(patientRequestDTO.getCpf());
+        patientEntity.setAddress(patientRequestDTO.getAddress());
+        patientEntity.setPhone(patientRequestDTO.getPhone());
+        patientRepository.save(patientEntity);
+        return patientMapper.convert(patientEntity);
+    }
 }

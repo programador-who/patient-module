@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import who.programador.mm.patientmodule.model.dtos.PatientFilterDTO;
 import who.programador.mm.patientmodule.model.dtos.PatientRequestDTO;
 import who.programador.mm.patientmodule.model.dtos.PatientResponseDTO;
-import who.programador.mm.patientmodule.services.PatientService;
+import who.programador.mm.patientmodule.services.IPatientService;
 
 import java.net.URI;
 
@@ -19,7 +19,7 @@ import java.net.URI;
 @RequestMapping("patient")
 public class PatientController {
 
-    private final PatientService patientService;
+    private final IPatientService patientService;
 
     @PostMapping
     public ResponseEntity<Void> post(@RequestBody PatientRequestDTO patientRequestDTO) {
@@ -27,6 +27,13 @@ public class PatientController {
         Long id = patientService.create(patientRequestDTO);
         URI location = URI.create(String.format("/patient/%d", id));
         return ResponseEntity.created(location).build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PatientResponseDTO> put(@PathVariable Long id, @RequestBody PatientRequestDTO patientRequestDTO) {
+        log.info("PUT /patient/{} {}", id, patientRequestDTO);
+        PatientResponseDTO patientResponseDTO = patientService.update(id, patientRequestDTO);
+        return ResponseEntity.ok(patientResponseDTO);
     }
 
     @GetMapping
