@@ -1,5 +1,6 @@
 package who.programador.mm.patientmodule.controllers;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springdoc.core.annotations.ParameterObject;
@@ -22,7 +23,7 @@ public class PatientController {
     private final IPatientService patientService;
 
     @PostMapping
-    public ResponseEntity<Void> post(@RequestBody PatientRequestDTO patientRequestDTO) {
+    public ResponseEntity<Void> post(@RequestBody @Valid PatientRequestDTO patientRequestDTO) {
         log.info("POST /patient {}", patientRequestDTO);
         Long id = patientService.create(patientRequestDTO);
         URI location = URI.create(String.format("/patient/%d", id));
@@ -30,7 +31,7 @@ public class PatientController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PatientResponseDTO> put(@PathVariable Long id, @RequestBody PatientRequestDTO patientRequestDTO) {
+    public ResponseEntity<PatientResponseDTO> put(@PathVariable Long id, @Valid @RequestBody PatientRequestDTO patientRequestDTO) {
         log.info("PUT /patient/{} {}", id, patientRequestDTO);
         PatientResponseDTO patientResponseDTO = patientService.update(id, patientRequestDTO);
         return ResponseEntity.ok(patientResponseDTO);
