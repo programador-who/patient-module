@@ -1,6 +1,6 @@
 Você está certo! Vou ajustar incluindo todas as dependências mencionadas.
 
-```markdown
+
 ## Technologies Used
 
 - **Spring Boot**: Framework for building Java-based applications, particularly microservices.
@@ -16,7 +16,7 @@ Você está certo! Vou ajustar incluindo todas as dependências mencionadas.
 - **SpringDoc OpenAPI**: Integration for generating OpenAPI documentation for Spring-based applications.
 - **JPA (Java Persistence API)**: Provides the interface for managing relational data in Java applications.
 - **Maven**: Build automation tool used to manage dependencies and plugins.
-```
+
 
 ### Swagger UI
 http://localhost:8080/swagger-ui/index.html#/
