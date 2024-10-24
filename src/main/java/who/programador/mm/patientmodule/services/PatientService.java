@@ -31,6 +31,7 @@ public class PatientService implements IPatientService {
     }
 
     public Page<PatientResponseDTO> getByFilter(PatientFilterDTO patientFilterDTO) {
+        // Example of using Specification
         Specification<Patient> patientSpecification = patientSpecificationBuilder.buildSpecification(patientFilterDTO);
         Page<Patient> patientRepositoryAll = patientRepository.findAll(patientSpecification, patientFilterDTO.pageable());
         return patientMapper.convert(patientRepositoryAll);
